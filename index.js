@@ -11,12 +11,11 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 
 app.post('/bfhl',async (req,res)=>{
-    try{
         let data= req.body.data;
+        data = JSON.parse(data);
         let numbers =[]
         let alphabets = []
         data.forEach(ele =>{
-            console.log(ele)
             if(Number.isInteger(parseInt(ele,10))){
                 numbers.push(ele)
             }
@@ -35,12 +34,10 @@ app.post('/bfhl',async (req,res)=>{
         const myJSON = JSON.stringify(obj);
         res.send(myJSON)
     
-    } catch(e){
-        res.send(e)
-    }  
+   
 })
 
 
 
 
-server.listen(process.env.PORT || 3300)
+server.listen(process.env.PORT || 3000)
