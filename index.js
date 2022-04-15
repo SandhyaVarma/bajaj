@@ -4,17 +4,19 @@ const server = require('http').Server(app);
 const cors = require('cors');
 const  bodyParser = require('body-parser');
 
+app.use(express.static(__dirname + '/public'));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
 
-app.post('/bhfl',async (req,res)=>{
+app.post('/bfhl',async (req,res)=>{
     try{
-        const data= req.body.data;
-        const numbers =[]
-        const alphabets = []
+        let data= req.body.data;
+        let numbers =[]
+        let alphabets = []
         data.forEach(ele =>{
+            console.log(ele)
             if(Number.isInteger(parseInt(ele,10))){
                 numbers.push(ele)
             }
@@ -34,18 +36,11 @@ app.post('/bhfl',async (req,res)=>{
         res.send(myJSON)
     
     } catch(e){
-        const obj ={
-            is_success:false,
-            user_id:"sandhya_varma_20022002",
-            email:"varmasandhya2020@gmail.com",
-            roll_number :"0112CS191093",
-        }
-        const myJSON = JSON.stringify(obj);
-        res.send(myJSON)
+        res.send(e)
     }  
 })
 
 
 
 
-server.listen(process.env.PORT || 3000)
+server.listen(process.env.PORT || 3300)
